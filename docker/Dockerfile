@@ -2,7 +2,7 @@ FROM oven/bun:latest AS base
 
 WORKDIR /app
 
-COPY app/prisma ./prisma/
+COPY ./prisma ./prisma/
 COPY package*.json bun.lockb* ./
 COPY . .
 
