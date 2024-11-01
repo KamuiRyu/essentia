@@ -38,8 +38,8 @@
       "@utils/*": [
         "./src/utils/*"
       ],
-      "@core-api/*": [
-        "./src/core-api/*"
+      "@api-core/*": [
+        "./src/api-core/*"
       ]
     }
   },
