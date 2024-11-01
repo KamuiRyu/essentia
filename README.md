@@ -1,60 +1,83 @@
 # Essentia
 
-## Descrição do projeto
-O **Essentia** é uma aplicação web desenvolvida para facilitar o gerenciamento de pedidos em restaurantes. Com essa aplicação, os usuários podem realizar pedidos de produtos de forma eficiente e rápida. A plataforma foi construída com tecnologias modernas para garantir desempenho, segurança e escalabilidade. 
+## Project Description
+**Essentia** is a web application developed to facilitate order management in restaurants. With this application, users can place product orders efficiently and quickly. The platform was built with modern technologies to ensure performance, security, and scalability.
 
-## Tecnologias utilizadas
-- **Next.js**: Framework React para renderização do lado do servidor e construção de aplicações modernas.
-- **Bun**: Gerenciador de pacotes e ambiente de execução de JavaScript ultrarrápido.
-- **Prisma**: ORM que simplifica o acesso ao banco de dados.
-- **PostgreSQL**: Sistema de banco de dados relacional robusto.
-- **Nginx**: Servidor web e proxy reverso para gerenciar solicitações e fornecer SSL.
-- **Docker** e **Docker Compose**: Utilizados para orquestração de containers e fácil deploy.
+## Technologies Used
+- **Next.js**: React framework for server-side rendering and building modern applications.
+- **Bun**: Ultra-fast JavaScript runtime and package manager.
+- **Prisma**: ORM that simplifies database access.
+- **PostgreSQL**: Robust relational database system.
+- **Nginx**: Web server and reverse proxy to manage requests and provide SSL.
+- **Docker** and **Docker Compose**: Used for container orchestration and easy deployment.
 
-## Estrutura do projeto
+## Project Structure
 ```plaintext
 essentia/
-├── app/                    # Código do frontend e rotas do Next.js
-│   ├── components/         # Componentes reutilizáveis da aplicação
-│   ├── pages/              # Páginas e rotas do Next.js
-│   └── styles/             # Estilos globais e específicos da aplicação
-├── core-api/               # Lógica do backend, controladores e serviços
-│   ├── controllers/        # Controladores de requisições
-│   ├── models/             # Definição de modelos de dados
-│   └── middlewares/        # Middlewares de autenticação e outros
-├── prisma/                 # Configuração do Prisma ORM
-│   ├── schema.prisma       # Esquema do banco de dados
-│   └── migrations/         # Migrações do banco de dados
-├── docker/                 # Configurações e scripts do Docker
-│   ├── Dockerfile          # Dockerfile para configurar o ambiente da aplicação
-│   ├── nginx.conf          # Configuração do Nginx para proxy reverso
-│   └── ssl/                # Certificados SSL
+├── app/                    # Frontend code and Next.js routes
+│   ├── layout.tsx          # Main layout of the application
+│   ├── page.tsx            # Main Next.js page
+│   └── page.module.css     # Page-specific styles
+├── docker/                 # Docker configurations and scripts
+│   ├── Dockerfile          # Dockerfile to configure the application environment
+│   ├── nginx.conf          # Nginx reverse proxy configuration
+│   └── ssl/                # SSL certificates
 │       ├── essentia.crt
 │       └── essentia.key
-├── public/                 # Arquivos estáticos e assets públicos
-├── .env                    # Variáveis de ambiente (não comitar)
-├── docker-compose.yml      # Arquivo de orquestração do Docker Compose
-└── README.md               # Documentação do projeto
+├── node_modules/           # Node.js modules (auto-generated)
+├── prisma/                 # Prisma ORM configuration
+│   ├── schema.prisma       # Database schema
+│   └── migrations/         # Database migrations
+├── public/                 # Static files and public assets
+├── src/                    # Main source code
+│   ├── api-core/           # Backend logic, controllers, and services
+│   │   ├── config/         # Backend configurations (e.g., database setup)
+│   │   ├── controllers/    # HTTP request controllers
+│   │   ├── database/       # Database connections and direct interactions
+│   │   ├── jobs/           # Async tasks and cron jobs
+│   │   ├── middlewares/    # Authentication and validation middlewares
+│   │   ├── repositories/   # Data access repositories
+│   │   ├── services/       # Business logic and backend services
+│   │   └── types/          # Backend-specific type definitions
+│   ├── assets/             # Media files and other assets
+│   ├── components/         # Reusable application components
+│   ├── fonts/              # Fonts used in the application
+│   ├── hooks/              # Custom hooks for specific functionalities
+│   ├── styles/             # Global and utility styles
+│   ├── types/              # Shared TypeScript types and interfaces
+│   └── utils/              # Utility functions and helpers
+├── .dockerignore           # Files and folders ignored by Docker
+├── .env                    # Environment variables (do not commit)
+├── .eslintrc.json          # ESLint configuration
+├── .gitignore              # Files and folders ignored by Git
+├── babel.config.ts         # Babel configuration
+├── bun.lockb               # Bun lock file (package manager)
+├── docker-compose.yml      # Docker Compose orchestration file
+├── LICENSE                 # Project license
+├── next-env.d.ts           # Type declarations for Next.js
+├── next.config.ts          # Next.js configuration
+├── package.json            # Project dependencies and scripts
+├── README.md               # Project documentation
+└── tsconfig.json           # TypeScript configuration
 ```
 
+## Main Features
+- **Order management**: Allows users to place product orders in the restaurant.
+- **Product listing**: View available products for ordering.
+- **Authentication and access control**: User login and access control module.
+- **Real-time order management**: Instant updates of placed orders.
 
-## Funcionalidades principais
-- **Gerenciamento de pedidos**: Permite aos usuários fazerem pedidos de produtos no restaurante.
-- **Listagem de produtos**: Visualização de produtos disponíveis para pedido.
-- **Autenticação e controle de acesso**: Módulo para login e controle de acesso do usuário.
-- **Gerenciamento de pedidos em tempo real**: Atualizações instantâneas dos pedidos feitos.
+## Environment Setup
+Before running the project, make sure you have the following prerequisites:
 
-## Configuração do Ambiente
-Antes de executar o projeto, certifique-se de ter os seguintes pré-requisitos:
-
-### Pré-requisitos
+### Prerequisites
 - **Docker** e **Docker Compose**
-- **Bun** (para desenvolvimento local)
+- **Bun** (for local development)
 
-### Configuração do `.env`
-Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis de ambiente:
+### `.env` Configuration
+Create a `.env` file in the project root with the following environment variables:
 ```dotenv
-# Configurações do Banco de Dados
+# Database settings
 DB_USERNAME=essentia
 DB_PASSWORD=essentia
 DB_DATABASE=essentia
@@ -66,29 +89,29 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:3000
 
 ```
 
-## Como executar o projeto
-1. Clone este repositório:
+## How to Run the Project
+1. Clone this repository:
    ```bash
    git clone https://github.com/seu-usuario/essentia.git
    ```
 
-2. Navegue até o diretório do projeto:
+2. Navigate to the project directory:
    ```bash
    cd essentia
    ```
 
-3. Suba os containers com Docker Compose:
+3. Start the containers using Docker Compose:
    ```bash
    docker-compose up --build
    ```
 
-4. Acesse a aplicação em seu navegador:
+4. Access the application in your browser:
    ```
    http://localhost:3000
    ```
 
 
-## Licença
-Este projeto é disponibilizado para uso exclusivamente educacional e pessoal. A reprodução, distribuição ou uso comercial não é permitido sem a autorização prévia dos autores. 
+## License
+This project is provided for educational and personal use only. Reproduction, distribution, or commercial use is not allowed without prior authorization from the authors.
 
-Para mais detalhes sobre os termos de uso, consulte o arquivo `LICENSE` ou entre em contato com os mantenedores do projeto.
+For more details about the terms of use, refer to the `LICENSE` file or contact the project maintainers.
